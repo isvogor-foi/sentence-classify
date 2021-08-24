@@ -5,6 +5,19 @@
 Given an input sentence like `Where can I find good sushi` classify the query to a category `sushi`. The input sentences
 and categories are given in the `dataset/`.
 
+**Installation** see `requirements.txt` (also, it's assumed that python `virtualenv` is [installed](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/)):
+
+```buildoutcfg
+# create environment
+virtualenv tmppy
+
+# activate environment
+source tmppy/bin/activate
+
+# install requirements
+pip install -r requirements.txt
+```
+
 **NOTE:** One sentence can fit into multiple categories.
 
 ### Approaches
@@ -50,4 +63,3 @@ With additional optimization CNN could likely perform better, also, a simple i5 
 
 (cnn) inference id (139660957743136) 1656.2750339508057 ms
 ```
-

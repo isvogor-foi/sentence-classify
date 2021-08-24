@@ -12,7 +12,6 @@ MAX_NGRAM = 2
 
 if __name__ == '__main__':
     GEN_SIZE = 100000
-    annnotated_sentence = []
     categories = read_categories()
     with open("../" + SENTECE_FILE_PATH, "w") as file, open("../" + LABELED_CSV_PATH, "w") as labeled_csv:
         for i in range(GEN_SIZE):
@@ -26,8 +25,3 @@ if __name__ == '__main__':
             print(synthetic_sentence)
             file.write(synthetic_sentence + "\n")
             labeled_csv.write(synthetic_sentence + "," + str(random_category) + "\n")
-            annnotated_sentence.append({"input": synthetic_sentence, "category": category})
-
-    with open("../" + ANNOTATED_DATASET_PATH, "w") as ml_file:
-        out = json.dumps(annnotated_sentence)
-        ml_file.write(out)
