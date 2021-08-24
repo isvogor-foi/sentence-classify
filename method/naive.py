@@ -8,7 +8,6 @@ MAX_NGRAM = 2
 def run(sentences, categories, repeat=100):
     # for each sentence, check occurance of n-grams
     for k in range(repeat):
-        print(len(categories))
         for sentence in sentences:
             _categories = []
             for g in range(MAX_NGRAM):

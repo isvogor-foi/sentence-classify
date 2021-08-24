@@ -13,6 +13,7 @@ class MLCnn:
         df = pd.read_csv("misc/data.csv")
         sentences = df['sentence'].values
         y = df['label'].values
+        self.labels_num = len(y) 
 
         self.sentences_train, self.sentences_test, self.y_train, self.y_test = train_test_split(sentences, y,
                                                                                                 test_size=0.25,
@@ -51,7 +52,7 @@ class MLCnn:
         self.model.add(keras.layers.GlobalMaxPooling1D())
         self.model.add(keras.layers.Dense(4, activation='relu'))
         # categories (hardcoded ... sorry)
-        self.model.add(keras.layers.Dense(14, activation='softmax'))
+        self.model.add(keras.layers.Dense(self.labels_num, activation='softmax'))
 
         self.model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
