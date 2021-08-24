@@ -7,6 +7,7 @@ if __name__ == '__main__':
     # check if reading went ok
     assert len(sentences) > 0 and len(categories) > 0, "There should be more sentences than categories"
 
+    sentences = sentences[:50]
     repeat = 1
     print("Running naive...")
     naive.run(sentences, categories, repeat)

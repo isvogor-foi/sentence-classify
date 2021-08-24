@@ -2,11 +2,10 @@ import json
 
 import pandas as pd
 
-CATEGORY_FILE_PATH = "dataset/categories.txt"
-STRUCTURED_CATEGORY_FILE_PATH = "dataset_ext/categories.json"
+CATEGORY_FILE_PATH = "dataset_ext/categories.txt"
+# STRUCTURED_CATEGORY_FILE_PATH = "dataset_ext/categories.json"
 SENTECE_FILE_PATH = "dataset_ext/sentences.txt"
-ANNOTATED_DATASET_PATH = "dataset_ext/annotated_dataset.json"
-
+LABELED_CSV_PATH = "dataset_ext/data.csv"
 
 def read_categories():
     categories = []
@@ -15,9 +14,9 @@ def read_categories():
     return categories
 
 
-def read_structured_categories():
-    with open(STRUCTURED_CATEGORY_FILE_PATH, "r") as file:
-        return json.load(file)
+# def read_structured_categories():
+#     with open(STRUCTURED_CATEGORY_FILE_PATH, "r") as file:
+#         return json.load(file)
 
 
 def read_sentences():
@@ -25,10 +24,6 @@ def read_sentences():
     with open(SENTECE_FILE_PATH, "r") as file:
         [sentences.append(x.strip().lower()) for x in file.readlines().__iter__()]
     return sentences
-
-
-def read_annotated_dataset():
-    return pd.read_json(ANNOTATED_DATASET_PATH)
 
 
 def get_ngram(sentence: str, n: int = 1):

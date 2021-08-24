@@ -1,22 +1,9 @@
-from misc.load_data import read_annotated_dataset
+import pandas as pd
 from misc.stopwatch import stopwatch
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
-from sklearn import svm
-import pandas as pd
-import numpy as np
-from nltk.tokenize import word_tokenize
-from nltk import pos_tag
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
-from sklearn.preprocessing import LabelEncoder
-from collections import defaultdict
-from nltk.corpus import wordnet as wn
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn import model_selection, naive_bayes, svm
-from sklearn.metrics import accuracy_score
 
 
 @stopwatch("MultinomialNB")
@@ -28,12 +15,14 @@ def run(count_vect, clf, sentences, repeat=100):
 
 
 def train():
-    df = read_annotated_dataset()
-    df['category_id'] = df['category'].factorize()[0]
+    df = pd.read_csv("misc/data.csv")
+    sentences = df['sentence'].values
+    y = df['label'].values
 
-    train_input, test_input, train_output, test_output = train_test_split(df['input'],
-                                                                          df['category'],
-                                                                          random_state=0)
+    train_input, test_input, train_output, test_output = train_test_split(sentences, y,
+                                                                          test_size=0.25,
+                                                                          random_state=1000)
+
     # matrix of token counts
     count_vectorizer = CountVectorizer()
 
@@ -45,4 +34,3 @@ def train():
     clf = MultinomialNB().fit(train_input_tfidf, train_output)
 
     return count_vectorizer, clf
-
