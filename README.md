@@ -18,6 +18,8 @@ source tmppy/bin/activate
 pip install -r requirements.txt
 ```
 
+Run with `python main.py` which should result in an output as show at the bottom of this document.
+
 **NOTE:** One sentence can fit into multiple categories.
 
 ### Approaches
